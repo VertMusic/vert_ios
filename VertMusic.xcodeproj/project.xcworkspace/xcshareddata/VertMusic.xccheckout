@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>49F9C22E-6FFE-4619-A896-BF0BA4212367</string>
+	<key>IDESourceControlProjectName</key>
+	<string>VertMusic</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>465F4FF0E1EDCB5965B3CD698B628CC2445951B3</key>
+		<string>https://github.com/VertMusic/vert_ios.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>VertMusic.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>465F4FF0E1EDCB5965B3CD698B628CC2445951B3</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/VertMusic/vert_ios.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>465F4FF0E1EDCB5965B3CD698B628CC2445951B3</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>465F4FF0E1EDCB5965B3CD698B628CC2445951B3</string>
+			<key>IDESourceControlWCCName</key>
+			<string>vert_ios</string>
+		</dict>
+	</array>
+</dict>
+</plist>
