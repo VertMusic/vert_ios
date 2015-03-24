@@ -138,6 +138,7 @@ static DataModel* _dataModel;
     [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    [request setValue:[_session valueForKey:@"accessToken"] forHTTPHeaderField:@"authorization"];
     
     NSURLSessionDownloadTask *downloadTask = [[NSURLSession sharedSession]
                                               downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
