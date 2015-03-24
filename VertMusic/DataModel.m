@@ -1,9 +1,9 @@
 //
-//  LoginModel.m
+//  DataModel.m
 //  VertMusic
 //
-//  Created by Glenn Contreras on 2/16/15.
-//  Copyright (c) 2015 Glenn Contreras. All rights reserved.
+//  Created by Glenn Contreras on 3/3/15.
+//  Copyright (c) 2015 Vert. All rights reserved.
 //
 
 #import "DataModel.h"
@@ -16,7 +16,11 @@ static DataModel* _dataModel;
     NSURL *_url_playlists;
     NSDictionary* _session;
     NSDictionary* _playlists;
+    NSDictionary* _songs;
     BOOL _isLoggedIn;
+    LoginViewController* _lvc;
+    PlayListTableViewController* _pltvc;
+    
 }
 
 + (DataModel*)getDataModel {
@@ -32,59 +36,125 @@ static DataModel* _dataModel;
     _session = nil;
     _playlists = nil;
     _isLoggedIn = false;
+    _lvc = nil;
+    _pltvc = nil;
     
     return self;
 }
 
-- (BOOL)loginWithUsername:(NSString*)username andPassword:(NSString*)password {
+- (void)synchLoginViewController:(LoginViewController*)lvc {
+    _lvc = lvc;
+}
+
+-  (void)synchPlayListTableViewController:(PlayListTableViewController *)pltvc {
+    _pltvc = pltvc;
+}
+
+- (void)loginWithUsername:(NSString*)username andPassword:(NSString*)password {
+    NSError *error = nil;
+    NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:config];
     
     NSDictionary *username_pass = @{@"session":@{@"username":username,@"password":password}};
-    NSData *json = [NSJSONSerialization dataWithJSONObject:username_pass options:kNilOptions error:nil];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:username_pass options:kNilOptions error:&error];
     
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_url_login];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setHTTPBody:json];
+    [request setHTTPBody:data];
     
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    NSDictionary *cred = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
     
-    if (cred == nil) {
-        NSLog(@"%@", cred);
-        _isLoggedIn = false;
-        return false;
+    if (!error) {
+        NSURLSessionUploadTask *uploadTask = [session uploadTaskWithRequest:request fromData:data
+                                                          completionHandler:^(NSData *data,NSURLResponse *response,NSError *error)
+                                                            {
+                                                                dispatch_async(dispatch_get_main_queue(), ^{
+                                                                    
+                                                                    NSDictionary *cred = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                                                                    if (!error) {
+                                                                        _session = [cred valueForKey:@"session"];
+                                                                        [_lvc didLogin:true];
+                                                                    }
+                                                                    else {
+                                                                        NSLog(@"%@", error);
+                                                                        [_lvc didLogin:false];
+                                                                    }
+                                                                });
+                                                                
+                                                            
+                                                            }];
+        
+        [uploadTask resume];
     }
-    _isLoggedIn = true;
-    
-    NSLog(@"%@", cred);
-    _session = [cred valueForKey:@"session"];
-    [self downloadPlayLists];
-    
-    return true;
+    else {
+        NSLog(@"%@", error);
+    }
 }
 
-- (BOOL)downloadPlayLists {
-    
+- (void)downloadPlayLists {
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_url_playlists];
     [request setHTTPMethod:@"GET"];
-    //[request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    //[request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    
     [request setValue:[_session valueForKey:@"accessToken"] forHTTPHeaderField:@"authorization"];
     
-    NSData* data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    NSURLSessionDownloadTask *downloadTask = [[NSURLSession sharedSession]
+                                                    downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+                                                        dispatch_async(dispatch_get_main_queue(), ^{
+                                                            if (!error) {
+                                                                _playlists = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:location] options:NSJSONReadingAllowFragments error:nil];
+                                                                [_lvc didFinishDownloadingPlaylist:true];
+                                                            }
+                                                            else {
+                                                                NSLog(@"%@", error);
+                                                                [_lvc didFinishDownloadingPlaylist:false];
+                                                            }
+                                                        });
+                                                        
+                                                    }];
     
-    _playlists = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+    [downloadTask resume];
+}
+
+- (void)downloadSongsWithPlaylistIndex:(NSInteger)index {
+    NSString* songURL = @"http://192.168.56.101:8080/vert/data/songs?";
+    NSArray* playLists = [self getPlaylists];
+    NSArray* songArray = [[playLists objectAtIndex:index] objectForKey:@"songs"];
     
-    if (_playlists == nil) {
-        NSLog(@"%@", _playlists);
-        return false;
+    for (int i=0;i<songArray.count;i++) {
+        if (i != 0){
+            songURL = [songURL stringByAppendingString:@"&"];
+        }
+        NSString *songID = [songArray objectAtIndex:i];
+        songURL = [songURL stringByAppendingFormat:@"ids[]=%@", songID];
     }
-    NSLog(@"%@", _playlists);
-    return true;
+    
+    NSURL* url = [NSURL URLWithString:songURL];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"GET"];
+    [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
+    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    NSURLSessionDownloadTask *downloadTask = [[NSURLSession sharedSession]
+                                              downloadTaskWithRequest:request completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
+                                                  dispatch_async(dispatch_get_main_queue(), ^{
+                                                      if (!error) {
+                                                          _songs = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:location] options:NSJSONReadingAllowFragments error:nil];
+                                                          [_pltvc didFinishDownloadingSongs:true];
+                                                      }
+                                                      else {
+                                                          NSLog(@"%@", error);
+                                                          [_pltvc didFinishDownloadingSongs:false];
+                                                      }
+                                                });
+                                              }];
+    
+    [downloadTask resume];
+
 }
 
 - (NSDictionary*)getSession {
@@ -95,10 +165,13 @@ static DataModel* _dataModel;
     return [_playlists valueForKey:@"playlists"];
 }
 
+- (NSArray*)getSongs {
+    return [_songs valueForKey:@"songs"];
+}
+
 - (void)logout {
     _isLoggedIn = false;
     _session = nil;
     _playlists = nil;
 }
-
 @end

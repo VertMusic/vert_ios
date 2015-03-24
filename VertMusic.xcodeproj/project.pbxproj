@@ -7,50 +7,64 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8301D0291A82B690007A8132 /* VERTMUSIC.png in Resources */ = {isa = PBXBuildFile; fileRef = 8301D0281A82B690007A8132 /* VERTMUSIC.png */; };
-		831ECC711A820913004C0F43 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831ECC701A820913004C0F43 /* AppDelegate.swift */; };
-		831ECC731A820913004C0F43 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831ECC721A820913004C0F43 /* ViewController.swift */; };
-		831ECC761A820913004C0F43 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 831ECC741A820913004C0F43 /* Main.storyboard */; };
-		831ECC781A820913004C0F43 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 831ECC771A820913004C0F43 /* Images.xcassets */; };
-		831ECC7B1A820913004C0F43 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 831ECC791A820913004C0F43 /* LaunchScreen.xib */; };
-		831ECC871A820913004C0F43 /* VertMusicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 831ECC861A820913004C0F43 /* VertMusicTests.swift */; };
-		831ECC921A820A4C004C0F43 /* vert_logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 831ECC911A820A4C004C0F43 /* vert_logo.png */; };
+		83192A5B1AA64C16000D6E64 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A5A1AA64C16000D6E64 /* main.m */; };
+		83192A5E1AA64C16000D6E64 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A5D1AA64C16000D6E64 /* AppDelegate.m */; };
+		83192A641AA64C16000D6E64 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83192A621AA64C16000D6E64 /* Main.storyboard */; };
+		83192A661AA64C16000D6E64 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83192A651AA64C16000D6E64 /* Images.xcassets */; };
+		83192A691AA64C16000D6E64 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 83192A671AA64C16000D6E64 /* LaunchScreen.xib */; };
+		83192A751AA64C16000D6E64 /* VertMusicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A741AA64C16000D6E64 /* VertMusicTests.m */; };
+		83192A801AA65012000D6E64 /* PlayListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A7F1AA65012000D6E64 /* PlayListTableViewController.m */; };
+		83192A831AA65031000D6E64 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A821AA65031000D6E64 /* LoginViewController.m */; };
+		83192A861AA6506C000D6E64 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A851AA6506C000D6E64 /* SettingsViewController.m */; };
+		83192A891AA65188000D6E64 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A881AA65188000D6E64 /* DataModel.m */; };
+		834B6C9B1ABFD7AC00EE8695 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C9A1ABFD7AC00EE8695 /* SongTableViewController.m */; };
+		837BEA0A1AAA4B2B00CCDB89 /* VertMusicHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 837BEA091AAA4B2B00CCDB89 /* VertMusicHeader.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		831ECC811A820913004C0F43 /* PBXContainerItemProxy */ = {
+		83192A6F1AA64C16000D6E64 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 831ECC631A820913004C0F43 /* Project object */;
+			containerPortal = 83192A4D1AA64C15000D6E64 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 831ECC6A1A820913004C0F43;
+			remoteGlobalIDString = 83192A541AA64C15000D6E64;
 			remoteInfo = VertMusic;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8301D0281A82B690007A8132 /* VERTMUSIC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VERTMUSIC.png; sourceTree = "<group>"; };
-		831ECC6B1A820913004C0F43 /* VertMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VertMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		831ECC6F1A820913004C0F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		831ECC701A820913004C0F43 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		831ECC721A820913004C0F43 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		831ECC751A820913004C0F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		831ECC771A820913004C0F43 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		831ECC7A1A820913004C0F43 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		831ECC801A820913004C0F43 /* VertMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VertMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		831ECC851A820913004C0F43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		831ECC861A820913004C0F43 /* VertMusicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VertMusicTests.swift; sourceTree = "<group>"; };
-		831ECC911A820A4C004C0F43 /* vert_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vert_logo.png; sourceTree = "<group>"; };
+		83192A551AA64C15000D6E64 /* VertMusic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VertMusic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83192A591AA64C16000D6E64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83192A5A1AA64C16000D6E64 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		83192A5C1AA64C16000D6E64 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		83192A5D1AA64C16000D6E64 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		83192A631AA64C16000D6E64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		83192A651AA64C16000D6E64 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		83192A681AA64C16000D6E64 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		83192A6E1AA64C16000D6E64 /* VertMusicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VertMusicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		83192A731AA64C16000D6E64 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		83192A741AA64C16000D6E64 /* VertMusicTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VertMusicTests.m; sourceTree = "<group>"; };
+		83192A7E1AA65012000D6E64 /* PlayListTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayListTableViewController.h; sourceTree = "<group>"; };
+		83192A7F1AA65012000D6E64 /* PlayListTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayListTableViewController.m; sourceTree = "<group>"; };
+		83192A811AA65031000D6E64 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		83192A821AA65031000D6E64 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		83192A841AA6506C000D6E64 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		83192A851AA6506C000D6E64 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		83192A871AA65188000D6E64 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		83192A881AA65188000D6E64 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		834B6C991ABFD7AC00EE8695 /* SongTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewController.h; sourceTree = "<group>"; };
+		834B6C9A1ABFD7AC00EE8695 /* SongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewController.m; sourceTree = "<group>"; };
+		837BEA091AAA4B2B00CCDB89 /* VertMusicHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VertMusicHeader.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		831ECC681A820913004C0F43 /* Frameworks */ = {
+		83192A521AA64C15000D6E64 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		831ECC7D1A820913004C0F43 /* Frameworks */ = {
+		83192A6B1AA64C16000D6E64 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -60,83 +74,84 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		831ECC621A820913004C0F43 = {
+		83192A4C1AA64C15000D6E64 = {
 			isa = PBXGroup;
 			children = (
-				831ECC6D1A820913004C0F43 /* VertMusic */,
-				831ECC831A820913004C0F43 /* VertMusicTests */,
-				831ECC6C1A820913004C0F43 /* Products */,
+				83192A571AA64C16000D6E64 /* VertMusic */,
+				83192A711AA64C16000D6E64 /* VertMusicTests */,
+				83192A561AA64C15000D6E64 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		831ECC6C1A820913004C0F43 /* Products */ = {
+		83192A561AA64C15000D6E64 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				831ECC6B1A820913004C0F43 /* VertMusic.app */,
-				831ECC801A820913004C0F43 /* VertMusicTests.xctest */,
+				83192A551AA64C15000D6E64 /* VertMusic.app */,
+				83192A6E1AA64C16000D6E64 /* VertMusicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		831ECC6D1A820913004C0F43 /* VertMusic */ = {
+		83192A571AA64C16000D6E64 /* VertMusic */ = {
 			isa = PBXGroup;
 			children = (
-				831ECC901A820A4C004C0F43 /* Pics */,
-				831ECC701A820913004C0F43 /* AppDelegate.swift */,
-				831ECC721A820913004C0F43 /* ViewController.swift */,
-				831ECC741A820913004C0F43 /* Main.storyboard */,
-				831ECC771A820913004C0F43 /* Images.xcassets */,
-				831ECC791A820913004C0F43 /* LaunchScreen.xib */,
-				831ECC6E1A820913004C0F43 /* Supporting Files */,
+				83192A5C1AA64C16000D6E64 /* AppDelegate.h */,
+				83192A5D1AA64C16000D6E64 /* AppDelegate.m */,
+				83192A871AA65188000D6E64 /* DataModel.h */,
+				83192A881AA65188000D6E64 /* DataModel.m */,
+				83192A7E1AA65012000D6E64 /* PlayListTableViewController.h */,
+				83192A7F1AA65012000D6E64 /* PlayListTableViewController.m */,
+				834B6C991ABFD7AC00EE8695 /* SongTableViewController.h */,
+				834B6C9A1ABFD7AC00EE8695 /* SongTableViewController.m */,
+				83192A811AA65031000D6E64 /* LoginViewController.h */,
+				83192A821AA65031000D6E64 /* LoginViewController.m */,
+				83192A841AA6506C000D6E64 /* SettingsViewController.h */,
+				83192A851AA6506C000D6E64 /* SettingsViewController.m */,
+				83192A621AA64C16000D6E64 /* Main.storyboard */,
+				83192A651AA64C16000D6E64 /* Images.xcassets */,
+				83192A671AA64C16000D6E64 /* LaunchScreen.xib */,
+				83192A581AA64C16000D6E64 /* Supporting Files */,
 			);
 			path = VertMusic;
 			sourceTree = "<group>";
 		};
-		831ECC6E1A820913004C0F43 /* Supporting Files */ = {
+		83192A581AA64C16000D6E64 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				831ECC6F1A820913004C0F43 /* Info.plist */,
+				837BEA091AAA4B2B00CCDB89 /* VertMusicHeader.png */,
+				83192A591AA64C16000D6E64 /* Info.plist */,
+				83192A5A1AA64C16000D6E64 /* main.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		831ECC831A820913004C0F43 /* VertMusicTests */ = {
+		83192A711AA64C16000D6E64 /* VertMusicTests */ = {
 			isa = PBXGroup;
 			children = (
-				831ECC861A820913004C0F43 /* VertMusicTests.swift */,
-				831ECC841A820913004C0F43 /* Supporting Files */,
+				83192A741AA64C16000D6E64 /* VertMusicTests.m */,
+				83192A721AA64C16000D6E64 /* Supporting Files */,
 			);
 			path = VertMusicTests;
 			sourceTree = "<group>";
 		};
-		831ECC841A820913004C0F43 /* Supporting Files */ = {
+		83192A721AA64C16000D6E64 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				831ECC851A820913004C0F43 /* Info.plist */,
+				83192A731AA64C16000D6E64 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		831ECC901A820A4C004C0F43 /* Pics */ = {
-			isa = PBXGroup;
-			children = (
-				8301D0281A82B690007A8132 /* VERTMUSIC.png */,
-				831ECC911A820A4C004C0F43 /* vert_logo.png */,
-			);
-			name = Pics;
-			path = ../Pics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		831ECC6A1A820913004C0F43 /* VertMusic */ = {
+		83192A541AA64C15000D6E64 /* VertMusic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 831ECC8A1A820913004C0F43 /* Build configuration list for PBXNativeTarget "VertMusic" */;
+			buildConfigurationList = 83192A781AA64C16000D6E64 /* Build configuration list for PBXNativeTarget "VertMusic" */;
 			buildPhases = (
-				831ECC671A820913004C0F43 /* Sources */,
-				831ECC681A820913004C0F43 /* Frameworks */,
-				831ECC691A820913004C0F43 /* Resources */,
+				83192A511AA64C15000D6E64 /* Sources */,
+				83192A521AA64C15000D6E64 /* Frameworks */,
+				83192A531AA64C15000D6E64 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -144,46 +159,46 @@
 			);
 			name = VertMusic;
 			productName = VertMusic;
-			productReference = 831ECC6B1A820913004C0F43 /* VertMusic.app */;
+			productReference = 83192A551AA64C15000D6E64 /* VertMusic.app */;
 			productType = "com.apple.product-type.application";
 		};
-		831ECC7F1A820913004C0F43 /* VertMusicTests */ = {
+		83192A6D1AA64C16000D6E64 /* VertMusicTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 831ECC8D1A820913004C0F43 /* Build configuration list for PBXNativeTarget "VertMusicTests" */;
+			buildConfigurationList = 83192A7B1AA64C16000D6E64 /* Build configuration list for PBXNativeTarget "VertMusicTests" */;
 			buildPhases = (
-				831ECC7C1A820913004C0F43 /* Sources */,
-				831ECC7D1A820913004C0F43 /* Frameworks */,
-				831ECC7E1A820913004C0F43 /* Resources */,
+				83192A6A1AA64C16000D6E64 /* Sources */,
+				83192A6B1AA64C16000D6E64 /* Frameworks */,
+				83192A6C1AA64C16000D6E64 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				831ECC821A820913004C0F43 /* PBXTargetDependency */,
+				83192A701AA64C16000D6E64 /* PBXTargetDependency */,
 			);
 			name = VertMusicTests;
 			productName = VertMusicTests;
-			productReference = 831ECC801A820913004C0F43 /* VertMusicTests.xctest */;
+			productReference = 83192A6E1AA64C16000D6E64 /* VertMusicTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		831ECC631A820913004C0F43 /* Project object */ = {
+		83192A4D1AA64C15000D6E64 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0610;
-				ORGANIZATIONNAME = "Glenn Contreras";
+				ORGANIZATIONNAME = Vert;
 				TargetAttributes = {
-					831ECC6A1A820913004C0F43 = {
+					83192A541AA64C15000D6E64 = {
 						CreatedOnToolsVersion = 6.1.1;
 					};
-					831ECC7F1A820913004C0F43 = {
+					83192A6D1AA64C16000D6E64 = {
 						CreatedOnToolsVersion = 6.1.1;
-						TestTargetID = 831ECC6A1A820913004C0F43;
+						TestTargetID = 83192A541AA64C15000D6E64;
 					};
 				};
 			};
-			buildConfigurationList = 831ECC661A820913004C0F43 /* Build configuration list for PBXProject "VertMusic" */;
+			buildConfigurationList = 83192A501AA64C15000D6E64 /* Build configuration list for PBXProject "VertMusic" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -191,31 +206,30 @@
 				en,
 				Base,
 			);
-			mainGroup = 831ECC621A820913004C0F43;
-			productRefGroup = 831ECC6C1A820913004C0F43 /* Products */;
+			mainGroup = 83192A4C1AA64C15000D6E64;
+			productRefGroup = 83192A561AA64C15000D6E64 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				831ECC6A1A820913004C0F43 /* VertMusic */,
-				831ECC7F1A820913004C0F43 /* VertMusicTests */,
+				83192A541AA64C15000D6E64 /* VertMusic */,
+				83192A6D1AA64C16000D6E64 /* VertMusicTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		831ECC691A820913004C0F43 /* Resources */ = {
+		83192A531AA64C15000D6E64 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831ECC761A820913004C0F43 /* Main.storyboard in Resources */,
-				831ECC921A820A4C004C0F43 /* vert_logo.png in Resources */,
-				831ECC7B1A820913004C0F43 /* LaunchScreen.xib in Resources */,
-				8301D0291A82B690007A8132 /* VERTMUSIC.png in Resources */,
-				831ECC781A820913004C0F43 /* Images.xcassets in Resources */,
+				83192A641AA64C16000D6E64 /* Main.storyboard in Resources */,
+				837BEA0A1AAA4B2B00CCDB89 /* VertMusicHeader.png in Resources */,
+				83192A691AA64C16000D6E64 /* LaunchScreen.xib in Resources */,
+				83192A661AA64C16000D6E64 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		831ECC7E1A820913004C0F43 /* Resources */ = {
+		83192A6C1AA64C16000D6E64 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -225,46 +239,51 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		831ECC671A820913004C0F43 /* Sources */ = {
+		83192A511AA64C15000D6E64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831ECC731A820913004C0F43 /* ViewController.swift in Sources */,
-				831ECC711A820913004C0F43 /* AppDelegate.swift in Sources */,
+				834B6C9B1ABFD7AC00EE8695 /* SongTableViewController.m in Sources */,
+				83192A831AA65031000D6E64 /* LoginViewController.m in Sources */,
+				83192A5E1AA64C16000D6E64 /* AppDelegate.m in Sources */,
+				83192A861AA6506C000D6E64 /* SettingsViewController.m in Sources */,
+				83192A5B1AA64C16000D6E64 /* main.m in Sources */,
+				83192A801AA65012000D6E64 /* PlayListTableViewController.m in Sources */,
+				83192A891AA65188000D6E64 /* DataModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		831ECC7C1A820913004C0F43 /* Sources */ = {
+		83192A6A1AA64C16000D6E64 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				831ECC871A820913004C0F43 /* VertMusicTests.swift in Sources */,
+				83192A751AA64C16000D6E64 /* VertMusicTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		831ECC821A820913004C0F43 /* PBXTargetDependency */ = {
+		83192A701AA64C16000D6E64 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 831ECC6A1A820913004C0F43 /* VertMusic */;
-			targetProxy = 831ECC811A820913004C0F43 /* PBXContainerItemProxy */;
+			target = 83192A541AA64C15000D6E64 /* VertMusic */;
+			targetProxy = 83192A6F1AA64C16000D6E64 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		831ECC741A820913004C0F43 /* Main.storyboard */ = {
+		83192A621AA64C16000D6E64 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				831ECC751A820913004C0F43 /* Base */,
+				83192A631AA64C16000D6E64 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		831ECC791A820913004C0F43 /* LaunchScreen.xib */ = {
+		83192A671AA64C16000D6E64 /* LaunchScreen.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				831ECC7A1A820913004C0F43 /* Base */,
+				83192A681AA64C16000D6E64 /* Base */,
 			);
 			name = LaunchScreen.xib;
 			sourceTree = "<group>";
@@ -272,7 +291,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		831ECC881A820913004C0F43 /* Debug */ = {
+		83192A761AA64C16000D6E64 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -310,12 +329,10 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		831ECC891A820913004C0F43 /* Release */ = {
+		83192A771AA64C16000D6E64 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -346,12 +363,11 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		831ECC8B1A820913004C0F43 /* Debug */ = {
+		83192A791AA64C16000D6E64 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -361,7 +377,7 @@
 			};
 			name = Debug;
 		};
-		831ECC8C1A820913004C0F43 /* Release */ = {
+		83192A7A1AA64C16000D6E64 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -371,7 +387,7 @@
 			};
 			name = Release;
 		};
-		831ECC8E1A820913004C0F43 /* Debug */ = {
+		83192A7C1AA64C16000D6E64 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -390,7 +406,7 @@
 			};
 			name = Debug;
 		};
-		831ECC8F1A820913004C0F43 /* Release */ = {
+		83192A7D1AA64C16000D6E64 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -408,34 +424,34 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		831ECC661A820913004C0F43 /* Build configuration list for PBXProject "VertMusic" */ = {
+		83192A501AA64C15000D6E64 /* Build configuration list for PBXProject "VertMusic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				831ECC881A820913004C0F43 /* Debug */,
-				831ECC891A820913004C0F43 /* Release */,
+				83192A761AA64C16000D6E64 /* Debug */,
+				83192A771AA64C16000D6E64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		831ECC8A1A820913004C0F43 /* Build configuration list for PBXNativeTarget "VertMusic" */ = {
+		83192A781AA64C16000D6E64 /* Build configuration list for PBXNativeTarget "VertMusic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				831ECC8B1A820913004C0F43 /* Debug */,
-				831ECC8C1A820913004C0F43 /* Release */,
+				83192A791AA64C16000D6E64 /* Debug */,
+				83192A7A1AA64C16000D6E64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		831ECC8D1A820913004C0F43 /* Build configuration list for PBXNativeTarget "VertMusicTests" */ = {
+		83192A7B1AA64C16000D6E64 /* Build configuration list for PBXNativeTarget "VertMusicTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				831ECC8E1A820913004C0F43 /* Debug */,
-				831ECC8F1A820913004C0F43 /* Release */,
+				83192A7C1AA64C16000D6E64 /* Debug */,
+				83192A7D1AA64C16000D6E64 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 831ECC631A820913004C0F43 /* Project object */;
+	rootObject = 83192A4D1AA64C15000D6E64 /* Project object */;
 }

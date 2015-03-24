@@ -2,8 +2,8 @@
 //  PlayListTableViewController.m
 //  VertMusic
 //
-//  Created by Glenn Contreras on 3/2/15.
-//  Copyright (c) 2015 Glenn Contreras. All rights reserved.
+//  Created by Glenn Contreras on 3/3/15.
+//  Copyright (c) 2015 Vert. All rights reserved.
 //
 
 #import "PlayListTableViewController.h"
@@ -22,16 +22,25 @@
     [super viewDidLoad];
     _dataModel = [DataModel getDataModel];
     _playlists = [_dataModel getPlaylists];
-    
+    [_dataModel synchPlayListTableViewController:self];
     if (_playlists == nil) {
-        _playlists = [NSArray arrayWithObject:@{@"name":@"No playlists"}];
+        _playlists = [NSArray array];
     }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didFinishDownloadingSongs:(BOOL)successful {
+    if (successful) {
+        UITableViewController* songTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SongTableViewController"];
+        [self.navigationController pushViewController:songTableViewController animated:YES];
+    }
+    else {
+        NSLog(@"Sorry, could not download songs");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -39,9 +48,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:true];
+    [_dataModel downloadSongsWithPlaylistIndex:indexPath.row];
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Return the number of sections
     return 1;
 }
 
@@ -55,12 +70,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayListCell" forIndexPath:indexPath];
     
     NSDictionary* playlist = [_playlists objectAtIndex:indexPath.row];
-    
     cell.textLabel.text = [playlist objectForKey:@"name"];
     
     return cell;
 }
-
 
 /*
 // Override to support conditional editing of the table view.

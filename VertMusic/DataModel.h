@@ -1,28 +1,39 @@
 //
-//  LoginModel.h
+//  DataModel.h
 //  VertMusic
 //
-//  Created by Glenn Contreras on 2/16/15.
-//  Copyright (c) 2015 Glenn Contreras. All rights reserved.
+//  Created by Glenn Contreras on 3/3/15.
+//  Copyright (c) 2015 Vert. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
+#import "LoginViewController.h"
+#import "PlayListTableViewController.h"
+#import "SongTableViewController.h"
 
-@interface DataModel : NSObject
-
-@property (weak, nonatomic) NSString *currentUserName;
+@interface DataModel : NSObject <NSURLConnectionDelegate>
 
 + (DataModel*)getDataModel;
 
 - (DataModel*)init;
 
-- (BOOL)loginWithUsername:(NSString*)username andPassword:(NSString*)password;
+- (void)synchLoginViewController:(LoginViewController*)lvc;
 
-- (BOOL)downloadPlayLists;
+- (void)synchPlayListTableViewController:(PlayListTableViewController*)pltvc;
+
+- (void)synchSongTableViewController:(SongTableViewController*)stvc;
+
+- (void)loginWithUsername:(NSString*)username andPassword:(NSString*)password;
+
+- (void)downloadPlayLists;
+
+- (void)downloadSongsWithPlaylistIndex:(NSInteger)index;
 
 - (NSDictionary*)getSession;
 
 - (NSArray*)getPlaylists;
+
+- (NSArray*)getSongs;
 
 - (void)logout;
 
