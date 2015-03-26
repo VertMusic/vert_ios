@@ -47,7 +47,9 @@
     NSLog(@"%lu", indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
-    [_dataModel playSongAtIndex:indexPath.row];
+    [_dataModel loadSongAtIndex:indexPath.row];
+    UIViewController* playSongViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PlaySongViewController"];
+    [self.navigationController pushViewController:playSongViewController animated:YES];
 }
 
 #pragma mark - Table view data source

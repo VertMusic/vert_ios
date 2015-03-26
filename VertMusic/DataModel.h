@@ -28,7 +28,7 @@
 
 - (void)downloadPlayLists;
 
-- (void)playSongAtIndex:(NSInteger)index;
+- (void)loadSongAtIndex:(NSInteger)index;
 
 - (void)downloadSongsWithPlaylistIndex:(NSInteger)index;
 
@@ -39,5 +39,11 @@
 - (NSArray*)getSongs;
 
 - (void)logout;
+
+- (void)playSong;
+
+- (void)pauseSong;
+
+- (void)stopSong;
 
 @end

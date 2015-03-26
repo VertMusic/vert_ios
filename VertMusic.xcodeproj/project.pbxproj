@@ -20,6 +20,7 @@
 		834B6C9B1ABFD7AC00EE8695 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C9A1ABFD7AC00EE8695 /* SongTableViewController.m */; };
 		83700C7C1AC209BA00E64F63 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83700C7B1AC209BA00E64F63 /* AVFoundation.framework */; };
 		837BEA0A1AAA4B2B00CCDB89 /* VertMusicHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 837BEA091AAA4B2B00CCDB89 /* VertMusicHeader.png */; };
+		8398B01B1AC3C41600EFFE96 /* PlaySongViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8398B01A1AC3C41600EFFE96 /* PlaySongViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,8 @@
 		834B6C9A1ABFD7AC00EE8695 /* SongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewController.m; sourceTree = "<group>"; };
 		83700C7B1AC209BA00E64F63 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		837BEA091AAA4B2B00CCDB89 /* VertMusicHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VertMusicHeader.png; sourceTree = "<group>"; };
+		8398B0191AC3C41600EFFE96 /* PlaySongViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaySongViewController.h; sourceTree = "<group>"; };
+		8398B01A1AC3C41600EFFE96 /* PlaySongViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaySongViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 				83192A7F1AA65012000D6E64 /* PlayListTableViewController.m */,
 				834B6C991ABFD7AC00EE8695 /* SongTableViewController.h */,
 				834B6C9A1ABFD7AC00EE8695 /* SongTableViewController.m */,
+				8398B0191AC3C41600EFFE96 /* PlaySongViewController.h */,
+				8398B01A1AC3C41600EFFE96 /* PlaySongViewController.m */,
 				83192A811AA65031000D6E64 /* LoginViewController.h */,
 				83192A821AA65031000D6E64 /* LoginViewController.m */,
 				83192A841AA6506C000D6E64 /* SettingsViewController.h */,
@@ -254,6 +259,7 @@
 				83192A5B1AA64C16000D6E64 /* main.m in Sources */,
 				83192A801AA65012000D6E64 /* PlayListTableViewController.m in Sources */,
 				83192A891AA65188000D6E64 /* DataModel.m in Sources */,
+				8398B01B1AC3C41600EFFE96 /* PlaySongViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

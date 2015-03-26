@@ -224,6 +224,89 @@
             </objects>
             <point key="canvasLocation" x="-261" y="-1491"/>
         </scene>
+        <!--Play Song View Controller-->
+        <scene sceneID="edY-Cd-I48">
+            <objects>
+                <viewController storyboardIdentifier="PlaySongViewController" id="LoX-g7-3Aw" customClass="PlaySongViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TIK-dX-5QT"/>
+                        <viewControllerLayoutGuide type="bottom" id="3cw-NH-cEM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L1Z-Qe-oY1">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ff-8C-W4S">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Play">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="189" y="385" width="30" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="play:" destination="LoX-g7-3Aw" eventType="touchUpInside" id="Prj-kg-0ob"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38h-3y-ZOW">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="100" y="233" width="209" height="21"/>
+                                </variation>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mJv-cB-xjL">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Pause">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="183" y="423" width="43" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="pause:" destination="LoX-g7-3Aw" eventType="touchUpInside" id="ZG5-TS-uPU"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8c-Fi-Ene">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Stop">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="188" y="456" width="33" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="stop:" destination="LoX-g7-3Aw" eventType="touchUpInside" id="M8h-MT-R8Q"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="4ff-8C-W4S"/>
+                                <exclude reference="38h-3y-ZOW"/>
+                                <exclude reference="mJv-cB-xjL"/>
+                                <exclude reference="l8c-Fi-Ene"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="4ff-8C-W4S"/>
+                                <include reference="38h-3y-ZOW"/>
+                                <include reference="mJv-cB-xjL"/>
+                                <include reference="l8c-Fi-Ene"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="songDescription" destination="38h-3y-ZOW" id="IgZ-yl-nRf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G3W-wS-951" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="684" y="-1486.5"/>
+        </scene>
         <!--Playlists-->
         <scene sceneID="GoA-Xl-tzz">
             <objects>

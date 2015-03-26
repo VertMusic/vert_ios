@@ -20,6 +20,7 @@ static DataModel* _dataModel;
     AVAudioPlayer* _audioPlayer;
     
     BOOL _isLoggedIn;
+    BOOL _isSongLoaded;
     LoginViewController* _lvc;
     PlayListTableViewController* _pltvc;
     
@@ -35,10 +36,11 @@ static DataModel* _dataModel;
 - (DataModel*)init {
     _url_login = [NSURL URLWithString:@"http://192.168.56.101:8080/vert/data/session"];
     _url_playlists = [NSURL URLWithString:@"http://192.168.56.101:8080/vert/data/playlists"];
+    _isLoggedIn = false;
+    _isSongLoaded = false;
     _audioPlayer = nil;
     _session = nil;
     _playlists = nil;
-    _isLoggedIn = false;
     _lvc = nil;
     _pltvc = nil;
     
@@ -164,7 +166,7 @@ static DataModel* _dataModel;
     [downloadTask resume];
 }
 
-- (void)playSongAtIndex:(NSInteger)index {
+- (void)loadSongAtIndex:(NSInteger)index {
     
     NSArray* songs = [self getSongs];
     NSDictionary* song = [songs objectAtIndex:index];
@@ -175,7 +177,19 @@ static DataModel* _dataModel;
     NSURL* songURL = [NSURL URLWithString:songUrlString];
     
     _audioPlayer = [AVPlayer playerWithURL:songURL];
+    _isSongLoaded = TRUE;
+}
+
+- (void)playSong {
     [_audioPlayer play];
+}
+
+- (void)pauseSong {
+    [_audioPlayer pause];
+}
+
+- (void)stopSong {
+    [_audioPlayer stop];
 }
 
 - (NSDictionary*)getSession {
