@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVFoundation.h>
 #import "LoginViewController.h"
 #import "PlayListTableViewController.h"
 #import "SongTableViewController.h"
@@ -26,6 +27,8 @@
 - (void)loginWithUsername:(NSString*)username andPassword:(NSString*)password;
 
 - (void)downloadPlayLists;
+
+- (void)playSongAtIndex:(NSInteger)index;
 
 - (void)downloadSongsWithPlaylistIndex:(NSInteger)index;
 

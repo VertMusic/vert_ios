@@ -17,6 +17,8 @@ static DataModel* _dataModel;
     NSDictionary* _session;
     NSDictionary* _playlists;
     NSDictionary* _songs;
+    AVAudioPlayer* _audioPlayer;
+    
     BOOL _isLoggedIn;
     LoginViewController* _lvc;
     PlayListTableViewController* _pltvc;
@@ -33,6 +35,7 @@ static DataModel* _dataModel;
 - (DataModel*)init {
     _url_login = [NSURL URLWithString:@"http://192.168.56.101:8080/vert/data/session"];
     _url_playlists = [NSURL URLWithString:@"http://192.168.56.101:8080/vert/data/playlists"];
+    _audioPlayer = nil;
     _session = nil;
     _playlists = nil;
     _isLoggedIn = false;
@@ -48,6 +51,10 @@ static DataModel* _dataModel;
 
 -  (void)synchPlayListTableViewController:(PlayListTableViewController *)pltvc {
     _pltvc = pltvc;
+}
+
+- (void)synchSongTableViewController:(SongTableViewController*)stvc {
+    
 }
 
 - (void)loginWithUsername:(NSString*)username andPassword:(NSString*)password {
@@ -155,7 +162,20 @@ static DataModel* _dataModel;
                                               }];
     
     [downloadTask resume];
+}
 
+- (void)playSongAtIndex:(NSInteger)index {
+    
+    NSArray* songs = [self getSongs];
+    NSDictionary* song = [songs objectAtIndex:index];
+    NSString* songId = [song objectForKey:@"id"];
+    NSString* songUrlString = @"http://192.168.56.101:8080/vert/file/song/";
+    
+    songUrlString = [songUrlString stringByAppendingString:songId];
+    NSURL* songURL = [NSURL URLWithString:songUrlString];
+    
+    _audioPlayer = [AVPlayer playerWithURL:songURL];
+    [_audioPlayer play];
 }
 
 - (NSDictionary*)getSession {
@@ -174,5 +194,14 @@ static DataModel* _dataModel;
     _isLoggedIn = false;
     _session = nil;
     _playlists = nil;
+    _songs = nil;
+    _lvc = nil;
+    _pltvc = nil;
 }
+
+
+
+
+
+
 @end

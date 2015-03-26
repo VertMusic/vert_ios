@@ -18,6 +18,7 @@
 		83192A861AA6506C000D6E64 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A851AA6506C000D6E64 /* SettingsViewController.m */; };
 		83192A891AA65188000D6E64 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 83192A881AA65188000D6E64 /* DataModel.m */; };
 		834B6C9B1ABFD7AC00EE8695 /* SongTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 834B6C9A1ABFD7AC00EE8695 /* SongTableViewController.m */; };
+		83700C7C1AC209BA00E64F63 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83700C7B1AC209BA00E64F63 /* AVFoundation.framework */; };
 		837BEA0A1AAA4B2B00CCDB89 /* VertMusicHeader.png in Resources */ = {isa = PBXBuildFile; fileRef = 837BEA091AAA4B2B00CCDB89 /* VertMusicHeader.png */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		83192A881AA65188000D6E64 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		834B6C991ABFD7AC00EE8695 /* SongTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SongTableViewController.h; sourceTree = "<group>"; };
 		834B6C9A1ABFD7AC00EE8695 /* SongTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SongTableViewController.m; sourceTree = "<group>"; };
+		83700C7B1AC209BA00E64F63 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		837BEA091AAA4B2B00CCDB89 /* VertMusicHeader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VertMusicHeader.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83700C7C1AC209BA00E64F63 /* AVFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +121,7 @@
 		83192A581AA64C16000D6E64 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				83700C7B1AC209BA00E64F63 /* AVFoundation.framework */,
 				837BEA091AAA4B2B00CCDB89 /* VertMusicHeader.png */,
 				83192A591AA64C16000D6E64 /* Info.plist */,
 				83192A5A1AA64C16000D6E64 /* main.m */,

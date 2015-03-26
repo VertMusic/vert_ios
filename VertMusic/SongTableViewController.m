@@ -46,6 +46,8 @@
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     NSLog(@"%lu", indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:true];
+    
+    [_dataModel playSongAtIndex:indexPath.row];
 }
 
 #pragma mark - Table view data source
