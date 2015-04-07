@@ -10,8 +10,8 @@
 
 @interface LoginViewController : UIViewController
 
-- (void)didLogin:(BOOL)successful;
+- (void)failedToLogin;
 
-- (void)didFinishDownloadingPlaylist:(BOOL)successful;
+- (void)didDownloadPlaylists:(BOOL)isSuccessful;
 
 @end

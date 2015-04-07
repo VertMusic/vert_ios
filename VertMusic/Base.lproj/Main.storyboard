@@ -233,6 +233,7 @@
                         <viewControllerLayoutGuide type="bottom" id="3cw-NH-cEM"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="L1Z-Qe-oY1">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ff-8C-W4S">
@@ -268,16 +269,16 @@
                                     <action selector="pause:" destination="LoX-g7-3Aw" eventType="touchUpInside" id="ZG5-TS-uPU"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l8c-Fi-Ene">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7nG-wv-ZiP">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" title="Stop">
+                                <state key="normal" title="Skip">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="188" y="456" width="33" height="30"/>
+                                    <rect key="frame" x="189" y="461" width="31" height="30"/>
                                 </variation>
                                 <connections>
-                                    <action selector="stop:" destination="LoX-g7-3Aw" eventType="touchUpInside" id="M8h-MT-R8Q"/>
+                                    <action selector="skip:" destination="LoX-g7-3Aw" eventType="touchUpInside" id="IFC-gx-bpL"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -287,7 +288,7 @@
                                 <exclude reference="4ff-8C-W4S"/>
                                 <exclude reference="38h-3y-ZOW"/>
                                 <exclude reference="mJv-cB-xjL"/>
-                                <exclude reference="l8c-Fi-Ene"/>
+                                <exclude reference="7nG-wv-ZiP"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -295,7 +296,7 @@
                                 <include reference="4ff-8C-W4S"/>
                                 <include reference="38h-3y-ZOW"/>
                                 <include reference="mJv-cB-xjL"/>
-                                <include reference="l8c-Fi-Ene"/>
+                                <include reference="7nG-wv-ZiP"/>
                             </mask>
                         </variation>
                     </view>

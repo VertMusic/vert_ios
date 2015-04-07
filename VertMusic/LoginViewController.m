@@ -28,46 +28,52 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    _dataModel = [DataModel getDataModel];
-    [_dataModel synchLoginViewController:self];
     _passwordField.secureTextEntry = YES;
     
     _usernameField.delegate = self;
     _passwordField.delegate = self;
     
     self.activityIndicator.hidden = YES;
-    
 }
 
-- (IBAction)userWantsToLogin:(id)sender {
-    [_dataModel loginWithUsername:_usernameField.text andPassword:_passwordField.text];
+- (void)startActivityIndicator {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];
 }
 
-- (void)didLogin:(BOOL)successful {
-    NSLog(@"DidFinish");
+- (void)stopActivityIndicator {
     self.activityIndicator.hidden = YES;
     [self.activityIndicator stopAnimating];
-    if (successful) {
-        [_dataModel downloadPlayLists];
-    }
-    else {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry" message:@"No match for username or password." delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
-        [alertView show];
-    }
 }
 
-- (void)didFinishDownloadingPlaylist:(BOOL)successful {
-    NSLog(@"DidFinish");
-    if (successful) {
-        UITabBarController* tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
-        [self addChildViewController:tabBarController];
-        [self.view addSubview:tabBarController.view];
-    }
-    else {
-        NSLog(@"Sorry could not download playlists");
-    }
+- (IBAction)userWantsToLogin:(id)sender {
+    [self startActivityIndicator];
+    _dataModel = [DataModel getDataModel];
+    _dataModel.delegate = self;
+    [_dataModel login:@{@"session":@{@"username":_usernameField.text,@"password":_passwordField.text}}];
+}
+
+- (void)failedToLogin {
+    [self showError:@"Incorrect username or password."];
+    [self stopActivityIndicator];
+}
+
+- (void)didDownloadPlaylists:(BOOL)isSuccessful {
+    if (isSuccessful) [self loadPlaylists];
+    else [self showError:@"Could not download playlists."];
+}
+
+- (void)showError:(NSString*)message{
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Sorry" message:message delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles: nil];
+    [alertView show];
+    [self stopActivityIndicator];
+}
+
+- (void)loadPlaylists {
+    UITabBarController* tabBarController = [self.storyboard instantiateViewControllerWithIdentifier:@"TabBarController"];
+    [self addChildViewController:tabBarController];
+    [self.view addSubview:tabBarController.view];
+    [self stopActivityIndicator];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,15 +85,5 @@
     [textField resignFirstResponder];
     return true;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

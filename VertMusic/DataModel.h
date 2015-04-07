@@ -7,36 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AVFoundation/AVFoundation.h>
-#import "LoginViewController.h"
-#import "PlayListTableViewController.h"
-#import "SongTableViewController.h"
 
-@interface DataModel : NSObject <NSURLConnectionDelegate>
+@interface DataModel : NSObject <NSURLSessionDataDelegate>
 
-+ (DataModel*)getDataModel;
+@property (weak, nonatomic) id delegate;
 
-- (DataModel*)init;
++ (id)getDataModel;
 
-- (void)synchLoginViewController:(LoginViewController*)lvc;
+- (void)login:(NSDictionary*)cred;
 
-- (void)synchPlayListTableViewController:(PlayListTableViewController*)pltvc;
+- (void)downloadSongs:(NSInteger)index;
 
-- (void)synchSongTableViewController:(SongTableViewController*)stvc;
-
-- (void)loginWithUsername:(NSString*)username andPassword:(NSString*)password;
-
-- (void)downloadPlayLists;
-
-- (void)loadSongAtIndex:(NSInteger)index;
-
-- (void)downloadSongsWithPlaylistIndex:(NSInteger)index;
-
-- (NSDictionary*)getSession;
+- (void)loadSong:(NSInteger)index;
 
 - (NSArray*)getPlaylists;
 
 - (NSArray*)getSongs;
+
+- (NSString*)getSongTitle;
 
 - (void)logout;
 
@@ -44,6 +32,6 @@
 
 - (void)pauseSong;
 
-- (void)stopSong;
+- (void)skipSong;
 
 @end

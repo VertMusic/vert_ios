@@ -20,7 +20,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dataModel = [DataModel getDataModel];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -28,12 +27,10 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    _songs = [_dataModel getSongs];
+    [super viewDidAppear:animated];
     
-    if (_songs == nil) {
-        NSLog(@"Songs are null");
-        _songs = [NSArray array];
-    }
+    _dataModel = [DataModel getDataModel];
+    _songs = [_dataModel getSongs];
     
     [self.tableView reloadData];
 }
@@ -47,7 +44,7 @@
     NSLog(@"%lu", indexPath.row);
     [tableView deselectRowAtIndexPath:indexPath animated:true];
     
-    [_dataModel loadSongAtIndex:indexPath.row];
+    [_dataModel loadSong:indexPath.row];
     UIViewController* playSongViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PlaySongViewController"];
     [self.navigationController pushViewController:playSongViewController animated:YES];
 }
@@ -70,7 +67,6 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                                     reuseIdentifier:@"SongCell"];
    
-    
     NSDictionary* song = [_songs objectAtIndex:indexPath.row];
     cell.textLabel.text = [song objectForKey:@"title"];
     cell.detailTextLabel.text = [song objectForKey:@"artist"];

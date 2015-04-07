@@ -18,9 +18,16 @@
     DataModel* _dataModel;
 }
 
+@synthesize songDescription;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     _dataModel = [DataModel getDataModel];
+    songDescription.text = [_dataModel getSongTitle];
 }
 
 - (IBAction)play:(id)sender {
@@ -31,15 +38,14 @@
     [_dataModel pauseSong];
 }
 
-- (IBAction)stop:(id)sender {
-    [_dataModel stopSong];
+- (IBAction)skip:(id)sender {
+    [_dataModel skipSong];
+    songDescription.text = [_dataModel getSongTitle];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

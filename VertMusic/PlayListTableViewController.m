@@ -20,17 +20,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    _dataModel = [DataModel getDataModel];
-    _playlists = [_dataModel getPlaylists];
-    [_dataModel synchPlayListTableViewController:self];
-    if (_playlists == nil) {
-        _playlists = [NSArray array];
-    }
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    _dataModel = [DataModel getDataModel];
+    _dataModel.delegate = self;
+    _playlists = [_dataModel getPlaylists];
+    
+    [self.tableView reloadData];
 }
 
 - (void)didFinishDownloadingSongs:(BOOL)successful {
@@ -50,7 +54,7 @@
 
 - (void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath*)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:true];
-    [_dataModel downloadSongsWithPlaylistIndex:indexPath.row];
+    [_dataModel downloadSongs:indexPath.row];
 }
 
 #pragma mark - Table view data source
