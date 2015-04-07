@@ -43,6 +43,11 @@
     songDescription.text = [_dataModel getSongTitle];
 }
 
+- (IBAction)prev:(id)sender {
+    [_dataModel prevSong];
+    songDescription.text = [_dataModel getSongTitle];
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

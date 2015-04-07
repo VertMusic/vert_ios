@@ -281,6 +281,18 @@
                                     <action selector="skip:" destination="LoX-g7-3Aw" eventType="touchUpInside" id="IFC-gx-bpL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqb-ST-fnD">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Prev">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="189" y="499" width="31" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="prev:" destination="LoX-g7-3Aw" eventType="touchUpInside" id="OrU-wp-P50"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -289,6 +301,7 @@
                                 <exclude reference="38h-3y-ZOW"/>
                                 <exclude reference="mJv-cB-xjL"/>
                                 <exclude reference="7nG-wv-ZiP"/>
+                                <exclude reference="dqb-ST-fnD"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -297,6 +310,7 @@
                                 <include reference="38h-3y-ZOW"/>
                                 <include reference="mJv-cB-xjL"/>
                                 <include reference="7nG-wv-ZiP"/>
+                                <include reference="dqb-ST-fnD"/>
                             </mask>
                         </variation>
                     </view>

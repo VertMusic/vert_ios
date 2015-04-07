@@ -34,4 +34,6 @@
 
 - (void)skipSong;
 
+- (void)prevSong;
+
 @end

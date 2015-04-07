@@ -10,7 +10,6 @@
 #import "DataModel.h"
 #import "LoginViewController.h"
 #import "PlayListTableViewController.h"
-#import "SongTableViewController.h"
 
 static DataModel* _dataModel;
 
@@ -183,11 +182,7 @@ static DataModel* _dataModel;
     NSURL* songURL = [NSURL URLWithString:[songUrlString stringByAppendingString:song_id]];
     
     _audioPlayer = [AVPlayer playerWithURL:songURL];
-}
-
-- (void)skipSong {
-    if (_track + 1 < _songs.count-1) _track++;
-    [self loadSong:_track];
+    [self playSong];
 }
 
 - (void)playSong {
@@ -217,6 +212,16 @@ static DataModel* _dataModel;
 
 - (NSString*)getSongTitle {
     return [[_songs objectAtIndex:_track] objectForKey:@"title"];
+}
+
+- (void)skipSong {
+    if (_track < _songs.count-1) _track++;
+    [self loadSong:_track];
+}
+
+- (void)prevSong {
+    if (_track > 0) _track--;
+    [self loadSong:_track];
 }
 
 - (void)logout {
