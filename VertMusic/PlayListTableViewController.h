@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface PlayListTableViewController : UITableViewController
 
-- (void)didFinishDownloadingSongs:(BOOL)successful;
 
 @end

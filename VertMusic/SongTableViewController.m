@@ -8,8 +8,9 @@
 
 #import "SongTableViewController.h"
 #import "DataModel.h"
+#import "DataProtocol.h"
 
-@interface SongTableViewController ()
+@interface SongTableViewController () <DataProtocol>
 
 @end
 
@@ -30,9 +31,19 @@
     [super viewDidAppear:animated];
     
     _dataModel = [DataModel getDataModel];
+    _dataModel.delegate = self;
     _songs = [_dataModel getSongs];
     
     [self.tableView reloadData];
+}
+
+- (void)sessionDidFinish:(BOOL)successful taskType:(TaskType)type {
+    if (successful) {
+        NSLog(@"Downloaded songs successfully");
+    }
+    else {
+        NSLog(@"Downloaded songs unsuccessfully");
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -46,6 +57,7 @@
     
     [_dataModel loadSong:indexPath.row];
     UIViewController* playSongViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PlaySongViewController"];
+    playSongViewController.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:playSongViewController animated:YES];
 }
 

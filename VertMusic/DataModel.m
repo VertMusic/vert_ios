@@ -18,15 +18,14 @@ static DataModel* _dataModel;
     NSURL *_url_login;
     NSURL *_url_playlists;
     
-    NSURLSessionConfiguration* _config;
-    NSURLSession* _session;
-    
     NSString* _accessToken;
     NSArray* _playlists;
     NSArray* _songs;
     
     AVAudioPlayer* _audioPlayer;
     NSInteger _track;
+    
+    BOOL _isSongPlaying;
 }
 
 @synthesize delegate;
@@ -42,23 +41,14 @@ static DataModel* _dataModel;
     _url_login = [NSURL URLWithString:@"http://192.168.56.101:8080/vert/data/session"];
     _url_playlists = [NSURL URLWithString:@"http://192.168.56.101:8080/vert/data/playlists"];
     
-    
-    _config = [NSURLSessionConfiguration defaultSessionConfiguration];
-    _config.allowsCellularAccess = NO;
-    _config.timeoutIntervalForRequest = 30.0;
-    _config.timeoutIntervalForResource = 60.0;
-    _config.HTTPMaximumConnectionsPerHost = 1;
-    
-    _session = [NSURLSession sessionWithConfiguration:_config
-                                             delegate:self
-                                        delegateQueue:nil];
-    
     _accessToken = nil;
     _playlists = nil;
      _songs = nil;
     
     _audioPlayer = nil;
     _track = 0;
+    
+    _isSongPlaying = NO;
     
     return self;
 }
@@ -71,64 +61,17 @@ static DataModel* _dataModel;
         return;
     }
     
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_url_login];
+    NSMutableURLRequest *request = [self request:_url_login];
     [request setHTTPMethod:@"POST"];
-    [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setHTTPBody:data];
-    [self beginLoginTask:request];;
-}
-
-
-- (void)beginLoginTask:(NSMutableURLRequest*)req {
-    NSURLSessionUploadTask *uploadTask = [_session uploadTaskWithRequest:req fromData:nil
-                                                      completionHandler:^(NSData *data,NSURLResponse *response,NSError *error)
-                                          {
-                                              dispatch_async(dispatch_get_main_queue(), ^{
-                                                  
-                                                  NSDictionary *cred = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-                                                  
-                                                  BOOL isCredValid = (cred != nil);
-                                                  if (isCredValid) {
-                                                      _accessToken = [[cred objectForKey:@"session"] objectForKey:@"accessToken"];
-                                                      NSLog(@"Access token: %@", _accessToken);
-                                                      [self downloadPlaylist];
-                                                  }
-                                                  else [(LoginViewController*)delegate failedToLogin];
-                                              });
-                                          }];
-    
-    [uploadTask resume];
+    [self taskWithRequest:request andTaskType:LOGIN];
 }
 
 - (void)downloadPlaylist {
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:_url_playlists];
+    NSMutableURLRequest *request = [self request:_url_playlists];
     [request setHTTPMethod:@"GET"];
-    [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
-    [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
     [request setValue:_accessToken forHTTPHeaderField:@"authorization"];
-    [self beginPlaylistTask:request];
-}
-
-- (void)beginPlaylistTask:(NSMutableURLRequest*)req {
-    NSURLSessionDownloadTask *downloadTask = [_session
-                                              downloadTaskWithRequest:req completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-                                                  dispatch_async(dispatch_get_main_queue(), ^{
-                                                      
-                                                      NSDictionary* playlists = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:location] options:NSJSONReadingAllowFragments error:nil];
-
-                                                      BOOL isPlaylistValid = (playlists != nil);
-                                                      if (isPlaylistValid) {
-                                                          _playlists = [playlists valueForKey:@"playlists"];
-                                                          NSLog(@"Playlists: %@", _playlists);
-                                                      }
-                                                      [(LoginViewController*)delegate didDownloadPlaylists:isPlaylistValid];
-                                                  });
-                                                  
-                                              }];
-    [downloadTask resume];
+    [self taskWithRequest:request andTaskType:PLAYLISTS];
 }
 
 - (void)downloadSongs:(NSInteger)index {
@@ -144,33 +87,57 @@ static DataModel* _dataModel;
     }
     
     NSURL* url = [NSURL URLWithString:songURL];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [self request:url];
     [request setHTTPMethod:@"GET"];
+    [request setValue:_accessToken forHTTPHeaderField:@"authorization"];
+    [self taskWithRequest:request andTaskType:SONGS];
+}
+
+- (NSMutableURLRequest*)request:(NSURL*)url {
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
     [request setValue:@"application/json; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"json" forHTTPHeaderField:@"Data-Type"];
     [request setValue:@"application/json" forHTTPHeaderField:@"Accept"];
-    [request setValue:_accessToken forHTTPHeaderField:@"authorization"];
-    [self beginSongTask:request];
+    
+    return request;
 }
 
-- (void)beginSongTask:(NSMutableURLRequest*)req {
-    NSURLSessionDownloadTask *downloadTask = [_session
-                                              downloadTaskWithRequest:req completionHandler:^(NSURL *location, NSURLResponse *response, NSError *error) {
-                                                  dispatch_async(dispatch_get_main_queue(), ^{
-                                                      
-                                                      NSDictionary* songs = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:location] options:NSJSONReadingAllowFragments error:nil];
-                                                      
-                                                      BOOL isSongsValid = (songs != nil);
-                                                      
-                                                      if (isSongsValid) {
-                                                          _songs = [songs valueForKey:@"songs"];
-                                                          NSLog(@"Songs: %@", _songs);
-                                                      }
-                                                      [(PlayListTableViewController*)delegate didFinishDownloadingSongs:isSongsValid];
-                                                  });
-                                              }];
-    
-    [downloadTask resume];
+- (void)taskWithRequest:(NSMutableURLRequest*)req andTaskType:(TaskType)type {
+    NSURLSession* session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:req completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+            BOOL isDictValid = (dict != nil);
+            if (isDictValid) {
+                [self handleData:dict withTask:type];
+                [delegate sessionDidFinish:true taskType:type];
+            }
+            
+        });
+    }];
+                                          
+    [uploadTask resume];
+}
+
+- (void)handleData:(NSDictionary*)data withTask:(TaskType)task {
+    switch (task) {
+        case LOGIN:
+            _accessToken = [[data objectForKey:@"session"] objectForKey:@"accessToken"];
+            NSLog(@"Access token: %@", _accessToken);
+            [self downloadPlaylist];
+            break;
+        case PLAYLISTS:
+            _playlists = [data valueForKey:@"playlists"];
+            NSLog(@"Playlists: %@", _playlists);
+            break;
+        case SONGS:
+            _songs = [data valueForKey:@"songs"];
+            NSLog(@"Songs: %@", _songs);
+            break;
+        default:
+            NSLog(@"Wrong Task Type");
+            break;
+    }
 }
 
 - (void)loadSong:(NSInteger)index {
@@ -185,14 +152,25 @@ static DataModel* _dataModel;
     [self playSong];
 }
 
+- (BOOL)togglePlaySong {
+    if (_isSongPlaying)
+        [self pauseSong];
+    
+    else [self playSong];
+    
+    return _isSongPlaying;
+}
+
 - (void)playSong {
     if (_audioPlayer == nil) return;
     [_audioPlayer play];
+    _isSongPlaying = YES;
 }
 
 - (void)pauseSong {
     if (_audioPlayer == nil) return;
     [_audioPlayer pause];
+    _isSongPlaying = NO;
 }
 
 
@@ -210,8 +188,8 @@ static DataModel* _dataModel;
     return _songs;
 }
 
-- (NSString*)getSongTitle {
-    return [[_songs objectAtIndex:_track] objectForKey:@"title"];
+- (NSDictionary*)getSongInfo {
+    return [_songs objectAtIndex:_track];
 }
 
 - (void)skipSong {
@@ -225,7 +203,6 @@ static DataModel* _dataModel;
 }
 
 - (void)logout {
-    _session = nil;
     _playlists = nil;
     _songs = nil;
     if(_audioPlayer != nil) {
@@ -233,6 +210,5 @@ static DataModel* _dataModel;
         _audioPlayer = nil;
     }
 }
-
 
 @end

@@ -8,8 +8,9 @@
 
 #import "LoginViewController.h"
 #import "DataModel.h"
+#import "DataProtocol.h"
 
-@interface LoginViewController () <UITextFieldDelegate>
+@interface LoginViewController () <UITextFieldDelegate, DataProtocol>
 
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
@@ -53,14 +54,21 @@
     [_dataModel login:@{@"session":@{@"username":_usernameField.text,@"password":_passwordField.text}}];
 }
 
-- (void)failedToLogin {
-    [self showError:@"Incorrect username or password."];
-    [self stopActivityIndicator];
-}
-
-- (void)didDownloadPlaylists:(BOOL)isSuccessful {
-    if (isSuccessful) [self loadPlaylists];
-    else [self showError:@"Could not download playlists."];
+- (void)sessionDidFinish:(BOOL)successful taskType:(TaskType)type{
+    if (type == LOGIN) {
+        if (!successful) {
+            [self showError:@"Incorrect username or password."];
+        }
+    }
+    if (type == PLAYLISTS) {
+        if (successful) {
+            [self loadPlaylists];
+        }
+        else {
+            [self showError:@"Error downloading playlist."];
+            [self stopActivityIndicator];
+        }
+    }
 }
 
 - (void)showError:(NSString*)message{

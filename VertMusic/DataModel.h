@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataProtocol.h"
 
 @interface DataModel : NSObject <NSURLSessionDataDelegate>
 
@@ -16,6 +17,8 @@
 
 - (void)login:(NSDictionary*)cred;
 
+- (void)downloadPlaylist;
+
 - (void)downloadSongs:(NSInteger)index;
 
 - (void)loadSong:(NSInteger)index;
@@ -24,13 +27,11 @@
 
 - (NSArray*)getSongs;
 
-- (NSString*)getSongTitle;
+- (NSDictionary*)getSongInfo;
 
 - (void)logout;
 
-- (void)playSong;
-
-- (void)pauseSong;
+- (BOOL)togglePlaySong;
 
 - (void)skipSong;
 

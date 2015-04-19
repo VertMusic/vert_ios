@@ -8,8 +8,9 @@
 
 #import "PlayListTableViewController.h"
 #import "DataModel.h"
+#import "DataProtocol.h"
 
-@interface PlayListTableViewController ()
+@interface PlayListTableViewController () <DataProtocol>
 
 @end
 
@@ -24,7 +25,15 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor greenColor];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshPlaylists)
+                  forControlEvents:UIControlEventValueChanged];
+    
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.view setBackgroundColor:[UIColor colorWithRed:51 green:51 blue:51 alpha:1]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -37,13 +46,29 @@
     [self.tableView reloadData];
 }
 
-- (void)didFinishDownloadingSongs:(BOOL)successful {
-    if (successful) {
-        UITableViewController* songTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SongTableViewController"];
-        [self.navigationController pushViewController:songTableViewController animated:YES];
+- (void)refreshPlaylists {
+    [_dataModel downloadPlaylist];
+}
+
+- (void)sessionDidFinish:(BOOL)successful taskType:(TaskType)type {
+    if (type == SONGS) {
+        if (successful) {
+            UITableViewController* songTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SongTableViewController"];
+            [self.navigationController pushViewController:songTableViewController animated:YES];
+        }
+        else {
+            NSLog(@"Sorry, could not download songs");
+        }
     }
-    else {
-        NSLog(@"Sorry, could not download songs");
+    if (type == PLAYLISTS) {
+        if (successful) {
+            _playlists = [_dataModel getPlaylists];
+            [self.tableView reloadData];
+            [self.refreshControl endRefreshing];
+        }
+        else {
+            [self.refreshControl endRefreshing];
+        }
     }
 }
 
@@ -75,6 +100,7 @@
     
     NSDictionary* playlist = [_playlists objectAtIndex:indexPath.row];
     cell.textLabel.text = [playlist objectForKey:@"name"];
+    [cell.contentView setBackgroundColor:[UIColor colorWithRed:51 green:51 blue:51 alpha:0]];
     
     return cell;
 }

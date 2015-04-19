@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoginViewController : UIViewController
-
-- (void)failedToLogin;
-
-- (void)didDownloadPlaylists:(BOOL)isSuccessful;
+@interface LoginViewController : UIViewController 
 
 @end
