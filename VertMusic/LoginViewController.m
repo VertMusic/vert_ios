@@ -37,6 +37,11 @@
     self.activityIndicator.hidden = YES;
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
+
 - (void)startActivityIndicator {
     self.activityIndicator.hidden = NO;
     [self.activityIndicator startAnimating];

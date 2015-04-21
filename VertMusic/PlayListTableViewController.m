@@ -17,6 +17,9 @@
 @implementation PlayListTableViewController {
     DataModel* _dataModel;
     NSArray* _playlists;
+    UIColor* _grey;
+    UIColor* _lightGrey;
+    UIColor* _green;
 }
 
 - (void)viewDidLoad {
@@ -25,15 +28,25 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
+    _lightGrey = [UIColor colorWithRed:81.0/255.0 green:81.0/255.0 blue:81.0/255.0 alpha:1];
+    _grey = [UIColor colorWithRed:51.0/255.0 green:51.0/255.0 blue:51.0/255.0 alpha:1];
+    _green = [UIColor colorWithRed:159.0/255.0 green:200.0/255.0 blue:71.0/255.0 alpha:1];
+    
+    self.navigationController.navigationBar.barTintColor = _lightGrey;
+    self.navigationController.navigationBar.tintColor = _green;
+    self.navigationController.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: _green};
+    
+    self.tabBarController.tabBar.barTintColor = _lightGrey;
+    self.tabBarController.tabBar.tintColor = _green;
+    
+    [self.view setBackgroundColor:_grey];
+    
     self.refreshControl = [[UIRefreshControl alloc] init];
-    self.refreshControl.backgroundColor = [UIColor greenColor];
+    self.refreshControl.backgroundColor = _green;
     self.refreshControl.tintColor = [UIColor whiteColor];
     [self.refreshControl addTarget:self
                             action:@selector(refreshPlaylists)
                   forControlEvents:UIControlEventValueChanged];
-    
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    [self.view setBackgroundColor:[UIColor colorWithRed:51 green:51 blue:51 alpha:1]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -51,24 +64,33 @@
 }
 
 - (void)sessionDidFinish:(BOOL)successful taskType:(TaskType)type {
-    if (type == SONGS) {
-        if (successful) {
-            UITableViewController* songTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SongTableViewController"];
-            [self.navigationController pushViewController:songTableViewController animated:YES];
-        }
-        else {
-            NSLog(@"Sorry, could not download songs");
-        }
+    if (type == SONGS)
+        [self loadSongController:successful];
+    else if (type == PLAYLISTS)
+        [self loadPlaylists:successful];
+    else
+        NSLog(@"Invalid type of task.");
+}
+
+- (void)loadSongController:(BOOL)successful {
+    if (successful) {
+        UITableViewController* songTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"SongTableViewController"];
+        [self.navigationController pushViewController:songTableViewController animated:YES];
     }
-    if (type == PLAYLISTS) {
-        if (successful) {
-            _playlists = [_dataModel getPlaylists];
-            [self.tableView reloadData];
-            [self.refreshControl endRefreshing];
-        }
-        else {
-            [self.refreshControl endRefreshing];
-        }
+    else {
+        NSLog(@"Sorry, could not download songs");
+    }
+}
+
+- (void)loadPlaylists:(BOOL)successful {
+    if (successful) {
+        _playlists = [_dataModel getPlaylists];
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+    }
+    else {
+        [self.refreshControl endRefreshing];
+        NSLog(@"Sorry, could not download playlists");
     }
 }
 
@@ -97,56 +119,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PlayListCell" forIndexPath:indexPath];
+    cell.textLabel.backgroundColor = _grey;
+    cell.contentView.backgroundColor = _grey;
     
     NSDictionary* playlist = [_playlists objectAtIndex:indexPath.row];
     cell.textLabel.text = [playlist objectForKey:@"name"];
-    [cell.contentView setBackgroundColor:[UIColor colorWithRed:51 green:51 blue:51 alpha:0]];
+    
+    [cell.textLabel setTextColor:_green];
     
     return cell;
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
