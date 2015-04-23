@@ -106,6 +106,10 @@ static DataModel* _dataModel;
     NSURLSession* session = [NSURLSession sharedSession];
     NSURLSessionDataTask *uploadTask = [session dataTaskWithRequest:req completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
+            if ([httpResponse statusCode] == 401) {
+                [delegate sessionDidFinish:false taskType:type];
+            }
             NSDictionary* dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
             BOOL isDictValid = (dict != nil);
             if (isDictValid) {
