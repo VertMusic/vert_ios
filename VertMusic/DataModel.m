@@ -8,13 +8,12 @@
 
 #import <AVFoundation/AVFoundation.h>
 #import "DataModel.h"
-#import "LoginViewController.h"
-#import "PlayListTableViewController.h"
 
 static DataModel* _dataModel;
 
 @implementation DataModel
 {
+    NSString* _url;
     NSURL *_url_login;
     NSURL *_url_playlists;
     
@@ -38,8 +37,11 @@ static DataModel* _dataModel;
 }
 
 - (DataModel*)init {
-    _url_login = [NSURL URLWithString:@"http://192.168.56.101:8080/vert/data/session"];
-    _url_playlists = [NSURL URLWithString:@"http://192.168.56.101:8080/vert/data/playlists"];
+    
+    _url = @"http://192.168.56.101:8080";
+    
+    _url_login = [NSURL URLWithString:[_url stringByAppendingString:@"/vert/data/session"]];
+    _url_playlists = [NSURL URLWithString:[_url stringByAppendingString:@"/vert/data/playlists"]];
     
     _accessToken = nil;
     _playlists = nil;
@@ -75,7 +77,7 @@ static DataModel* _dataModel;
 }
 
 - (void)downloadSongs:(NSInteger)index {
-    NSString* songURL = @"http://192.168.56.101:8080/vert/data/songs?";
+    NSString* songURL = [_url stringByAppendingString:@"/vert/data/songs?"];
     NSArray* songArray = [[_playlists objectAtIndex:index] objectForKey:@"songs"];
     
     for (int i=0;i<songArray.count;i++) {
@@ -149,7 +151,7 @@ static DataModel* _dataModel;
     if (_audioPlayer != nil) _audioPlayer = nil;
     
     NSString* song_id = [[_songs objectAtIndex:index] objectForKey:@"id"];
-    NSString* songUrlString = @"http://192.168.56.101:8080/vert/file/song/";
+    NSString* songUrlString = [_url stringByAppendingString:@"/vert/file/song/"];
     NSURL* songURL = [NSURL URLWithString:[songUrlString stringByAppendingString:song_id]];
     
     _audioPlayer = [AVPlayer playerWithURL:songURL];
